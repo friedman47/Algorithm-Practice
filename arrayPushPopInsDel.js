@@ -47,25 +47,3 @@ function removeAt(array, index) {
   array.length--;
   return pop;
 }
-
-var testArray = [4, 7, 3, 8, 10, 5, 1, 9, 6, 2];
-console.log(testArray);
-console.log(pushFront(testArray, 0));
-console.log(popFront(testArray));
-console.log(insertAt(testArray, 0, 0));
-console.log(pushFront(testArray, 12));
-console.log(popFront(testArray));
-console.log(insertAt(testArray, 0, 12));
-console.log(pushFront(testArray, {name:'Archibald Huffpedal', occupation: 'badassery'}));
-console.log(popFront(testArray));
-console.log(testArray);
-console.log(popFront(testArray));
-console.log(testArray);
-console.log(popFront(testArray));
-console.log(testArray);
-console.log(insertAt(testArray, 7, 19));
-console.log(removeAt(testArray, 7));
-console.log(testArray);
-console.log(insertAt(testArray, 3, 38));
-console.log(removeAt(testArray, 3));
-console.log(testArray);
