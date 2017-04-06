@@ -7,4 +7,9 @@ var testArray4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var testArray5 = [-1, -2, -3, -4, -5, -6, -7, -8, -9, -10];
 var testArray6 = [];
 var testArray7 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'];
-var testArray8 = [4, 7, 6, 3, 8, 5, 10, 2, 9, 1]
+var testArray8 = [4, 7, 6, 3, 8, 5, 10, 2, 9, 1];
+
+var string1 = "This is a string to test.";
+var string2 = "Here's another string to test.";
+var string3 = "Space - the final frontier.";
+var string4 = "Sp ace - t he final front ier . ";
