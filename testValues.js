@@ -17,3 +17,5 @@ var string4 = "Sp ace - t he final front ier . ";
 var string5 = "there's no free lunch - gotta pay yer way.";
 var string6 = "live from new york, it's saturday night!";
 var string7 = "you've got the bear necessities."
+var string8 = "0s1a3y5w7h9a2t4?6!8?0"
+var string9 = "4d9q16p25y36cf49di64fd"
