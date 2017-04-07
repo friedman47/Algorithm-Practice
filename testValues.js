@@ -13,3 +13,6 @@ var string1 = "This is a string to test.";
 var string2 = "Here's another string to test.";
 var string3 = "Space - the final frontier.";
 var string4 = "Sp ace - t he final front ier . ";
+var string5 = "there's no free lunch - gotta pay yer way.";
+var string6 = "live from new york, it's saturday night!";
+var string7 = "you've got the bear necessities."
