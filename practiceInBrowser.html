@@ -72,7 +72,7 @@
         list.addEventListener('click', function(event){
           if(event.target && event.target.matches("button.remove")) {  // matches tag and class
             eraseFile(event.target.id);
-          } else if (event.target && event.target.nodeName == "BUTTON") { // matches element type, only 2 buttons so this is must be reload
+          } else if (event.target && event.target.nodeName == "BUTTON") { // matches element type, only 2 buttons so this must be reload
             reload(event.target.previousElementSibling.id);
           }
         });
