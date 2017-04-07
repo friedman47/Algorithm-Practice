@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Browser environment for playing with JS">
+    <title>Algorithm Practice</title>
+    <script type="text/javascript">
+    /*  simple page to load script files in browser (no need for additional libraries or internet)
+        remove button does not clear script from browser memory, just for aesthetics
+        reload button reloads a script file to reset variable assignments (e.g. if you have a file of test values)
+        refresh (F5 key) to clear all and reset browser memory */
+
+      document.addEventListener("DOMContentLoaded", function(){
+        let addFile = document.getElementById('addFile');
+        let addBtn = document.getElementById('addBtn');
+        let dir = document.getElementById('directory');
+        let path = document.getElementById('filePath');
+        let list = document.getElementById('list');
+        let fileAddedId = 0;
+
+        path.hidden = true;
+        dir.onclick = function() {
+          path.hidden = !path.hidden;
+        }
+
+// Helper function builds new "script" element with auto incremented id
+        function importFile(newFile) {
+          let newScript = document.createElement("script");
+          newScript.type = "text/javascript";
+          newScript.src = path.value + newFile;
+          newScript.id = "script" + fileAddedId;
+          console.log(newScript, " was added.");
+          return newScript;
+        }
+
+// Helper function appends the unordered list with the most recently added file
+        function appList() {
+          list.innerHTML += '<li id=list' + fileAddedId + '>' + addFile.value + '   <button id=' + fileAddedId + ' class="remove">Remove</button> <button>Reload</button></li>'
+          fileAddedId++;
+        }
+
+// Main function to add a new JS file to the DOM
+        addBtn.onclick = function(){
+          document.head.appendChild(importFile(addFile.value));
+          appList();
+          addFile.value = '';
+          addFile.focus();
+        };
+
+// Reload function.  Idea is to reset values (e.g. from a test file).  Loads a tag with a different 'id' (else won't reset values), then changes those values back to the original id (so that it's possible to reload again); effectively destroys and remakes a "script" element.
+        function reload(reloadID){
+          let reloadScript = document.getElementById('script' + reloadID);
+          let newScript = document.createElement("script");
+          newScript.type = "text/javascript";
+          newScript.src = reloadScript.src;
+          newScript.id = 'script' + fileAddedId;
+          document.head.appendChild(newScript);
+          document.head.removeChild(reloadScript);
+          document.getElementById('script' + fileAddedId).id = 'script' + reloadID;
+          console.log(reloadScript, " was reloaded.");
+        }
+
+// Helper function to remove a "script" element from the DOM and from the unordered list
+        function eraseFile(clickedID) {
+          let eraseScript = document.getElementById('script' + clickedID);
+          document.head.removeChild(eraseScript);
+          list.removeChild(document.getElementById('list' + clickedID));
+          console.log(eraseScript, " was removed.");
+        }
+
+// Event listener added to unordered list and uses event delegation to determine which button was pushed when event bubbles up.
+        list.addEventListener('click', function(event){
+          if(event.target && event.target.matches("button.remove")) {  // matches tag and class
+            eraseFile(event.target.id);
+          } else if (event.target && event.target.nodeName == "BUTTON") { // matches element type, only 2 buttons so this is must be reload
+            reload(event.target.previousElementSibling.id);
+          }
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <button id="directory">Path:</button>
+    <input type="text" id="filePath" placeholder="./">
+    <label for="addFile">Add File: </label>
+    <input type="text" id="addFile">
+    <button id="addBtn">Load</button>
+    <ul id="list"></ul>
+  </body>
+</html>

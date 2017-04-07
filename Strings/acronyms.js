@@ -11,13 +11,3 @@ function acronym(string) {
   let acronym = acroArray.join("");
   return acronym;
 }
-
-var string1 = "there's no free lunch - gotta pay yer way.";
-var string2 = "live from new york, it's saturday night!";
-var string3 = "space - the final frontier."
-var string4 = "you've got the bear necessities."
-
-console.log(acronym(string1));
-console.log(acronym(string2));
-console.log(acronym(string3));
-console.log(acronym(string4));
