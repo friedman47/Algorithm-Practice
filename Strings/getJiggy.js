@@ -10,8 +10,3 @@ function getJiggy(string) {
   temp += ' to the ' + string[0].toUpperCase() + '!';  // add the remaining text followed by the first element (capitalized)
   return temp;
 }
-
-console.log(getJiggy("hardly"));
-console.log(getJiggy("joyfully"));
-console.log(getJiggy("stringify"));
-console.log(getJiggy("Dylan"));
