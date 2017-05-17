@@ -64,4 +64,31 @@ function removeMin(SLQueue) {
   return SLQueue;
 }
 
-// I'll update this later with the bonus challenge. The basic plan is just to maintain a pointer to the most recently seen min value as we traverse the list.
+// Bonus challenge. Basically, iterate list, store node immediately prior to a node holding min, keep updating it during traversal so it's always before the last value of min, then handle head and tail node edge cases as needed.
+
+function removeLastMin(SLQueue) {
+  if (SLQueue.head === null) {
+    return null;
+  }
+  let min = findMin(SLQueue);
+  let current = SLQueue.head;
+  let previous = null;
+  while (current !== SLQueue.tail) { // similar to the remove all function, most of the edge cases are in the head and tail nodes, so I'll iterate without touching those nodes
+    if (current.next.value === min) { // update previous to hold node immediately preceding most recent minimum node;
+      previous = current;
+    }
+    current = current.next;
+  }
+  if (SLQueue.head === SLQueue.tail) { // if we have a queue of length 1, that one node must contain the min, delete both
+    SLQueue.head = null;
+    SLQueue.tail = null;
+  } else if (SLQueue.tail.value === min) { // if tail is min, it must be the last instance of min in the queue
+    previous.next = SLQueue.tail.next; // copy tail's next pointer, in case this is a circular queue
+    SLQueue.tail = previous; // then reset tail to previous (which is the node immediately preceding the original tail)
+  } else if (previous === null) { // if previous is null, then min wasn't in body or tail, so head must be min (remember we assume that the value min must exist)
+    SLQueue.head = SLQueue.head.next;
+  } else { // the normal case: just skip over the last instance of min. The main chance for something to go wrong here would be if we run out of queue to jump our link to, but that cannot happen based on the previous conditionals. We're doing a 'double jump' to delete the last instance of min, so if something were to break it would mean that our double jump took us to null (or to head in a circular list). The only way that can happen is if we jump over tail as the last value to delete, but we've already specifically addressed the case where tail is min in the conditionals above. That means if we get to this point, then tail cannot be min, which means we have at least 2 nodes remaining in the queue after previous (the value to delete and tail), so we will at most jump to tail and no further.
+    previous.next = previous.next.next;
+  }
+  return SLQueue;
+}
