@@ -12,12 +12,13 @@ function arrayStack() {
     return this; // return this to allow chaining; not returning stack itself since the point seems to be encapsulation
   }
   this.pop = function () { // again assuming I should re-create .pop() instead of using built-in
+    if (stack.length === 0) {return null}
     let pop = stack[stack.length - 1];
     stack.length--;
     return pop;
   }
   this.top = function () {
-    return stack[stack.length - 1];
+    return (stack.length > 0) ? stack[stack.length - 1] : null;
   }
   this.contains = function (value) {
     for (let i = 0; i < stack.length; i++) {
