@@ -27,6 +27,7 @@ SLStack.prototype.push = function (value) { // we're prepending because that's O
 }
 
 SLStack.prototype.pop = function () {
+  if (!this.head) {return null}
   let pop = this.head.value;
   this.head = this.head.next;
   this.count -= 1;
@@ -34,7 +35,7 @@ SLStack.prototype.pop = function () {
 }
 
 SLStack.prototype.top = function () { // as mentioned above, top and head are essentially the same, but if we called the head node 'top' in the constructor, it wouldn't be a method (so we lose polymorphism) and it would return the node, not the value
-  return this.head.value;
+  return (this.head)? this.head.value : this.head;
 }
 
 SLStack.prototype.contains = function (value) { // only way without using extra space is to check the list, so .contains() is O(n); it doesn't matter if we pre or postpend, either way we'd need to traverse the list
